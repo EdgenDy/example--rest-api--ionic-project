@@ -1,20 +1,31 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      REST API Test Dashboard
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+<h3>Global Methods Test Panel</h3>
+  <p>Open your browser inspection console (F12) to see execution responses.</p>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-button expand="block" color="primary" (click)="runGetCollectionTest()">GET All Users</ion-button>
+  <ion-button expand="block" color="success" (click)="runPostTest()">POST Create User</ion-button>
+  <ion-button expand="block" color="warning" (click)="runPutTest(1)">PUT Replace User #1</ion-button>
+  <ion-button expand="block" color="tertiary" (click)="runPatchTest(2)">PATCH Status User #2</ion-button>
+  <ion-button expand="block" color="danger" (click)="runDeleteTest(3)">DELETE User #3</ion-button>
+
+  <h3>Hardcoded Initial Load:</h3>
+  <ion-list>
+    @for (user of users; track user.id) {
+    <ion-item>
+      <ion-label>
+        <h2>{{ user.name }} (ID: {{ user.id }})</h2>
+        <p>{{ user.email }} — <strong>{{ user.status }}</strong></p>
+      </ion-label>
+      <ion-button slot="end" fill="clear" (click)="runGetSingleTest(user.id)">Test GET</ion-button>
+    </ion-item>
+    }
+  </ion-list>
 </ion-content>
